@@ -1,0 +1,20 @@
+---
+- name: DELETE rax server
+  hosts: localhost
+
+  tasks:
+
+    - name: DELETE rax server
+      local_action:
+        module: rax
+        credentials: /root/.rackspace_cloud_credentials
+        state: absent
+        instance_ids: "UUIDtoDELETE"
+        region: "ORD"
+        wait: yes
+        wait_timeout: 600
+      register: rax
+
+    - debug:
+        var: rax
+...

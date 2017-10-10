@@ -1,0 +1,21 @@
+---
+- name: PRINT rax server list
+  hosts: localhost
+
+  tasks:
+
+    - name: PRINT rax server details
+      local_action:
+        module: rax_facts
+        credentials: /root/.rackspace_cloud_credentials
+        name: "{{ item }}"
+        region: ORD
+      with_items:
+          - fakeservername
+          - fakeservername2
+          - fakeservername3
+      register: rax
+
+    - debug:
+        var: rax
+...
