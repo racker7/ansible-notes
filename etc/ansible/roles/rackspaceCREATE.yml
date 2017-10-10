@@ -8,14 +8,18 @@
       local_action:
         module: rax
         credentials: /root/.rackspace_cloud_credentials
-        key_name: "emlee-ord"
+        key_name: "ansible-ssh"
         state: present
-        name: "stack-ansible-made"
+        # name: "stack-ansible-made"
+        name: "{{ item }}"
         region: "ORD"
         flavor: "2"
         image: "398c5f65-23e2-44da-97d8-d28ff5ec583b"
         wait: yes
         wait_timeout: 600
+      with_items:
+        - stack-ansible-01
+        - stack-ansible-02
       register: rax
 
     - debug:

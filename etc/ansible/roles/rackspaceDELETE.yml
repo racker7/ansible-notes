@@ -9,10 +9,13 @@
         module: rax
         credentials: /root/.rackspace_cloud_credentials
         state: absent
-        instance_ids: "UUIDtoDELETE"
+        instance_ids: "{{ item }}"
         region: "ORD"
         wait: yes
         wait_timeout: 600
+      with_items:
+        - UUID-of-server-to-delete
+        - UUID-of-server-to-delete2
       register: rax
 
     - debug:
